@@ -1,4 +1,3 @@
-
 #ifndef RT_MAP
 #define RT_MAP 1
 
@@ -22,7 +21,7 @@ typedef struct mapchar {
 #define CORRIDORS 0
 #define FUEL_SEA  1
 #define FOREST    2
-#define CAVERN    3  
+#define CAVERN    3
 
 /* defines for room types */
 #define SQUARE 0
@@ -36,7 +35,7 @@ typedef struct mapchar {
 /* max room size */
 #define MAX_ROOM_SIZE 7
 
-enum Direction {N, NE, E, SE, S, SW, W, NW}; 
+enum Direction {N, NE, E, SE, S, SW, W, NW};
 
 void set_mapdrawing_chars();
 
@@ -65,9 +64,9 @@ void print_map();
 /* returns 1 if door is there, 0 otherwise */
 int open_door();
 
-/* 
+/*
  * draw the level features; current level
- * features are held in a global array 
+ * features are held in a global array
  */
 void draw_lfeats();
 

@@ -14,7 +14,7 @@ monster unique_mon[1];
 /* linked list stuff */
 
 /*
- * inserts a monster into a linked list, 
+ * inserts a monster into a linked list,
  * remember to create the list by declaring
  * the starting pointer to NULL, and to set
  * the starting pointer to the return value of
@@ -41,7 +41,7 @@ int delete_mon(monster *mlist_ptr, int mon_num) {
 	} else {
 		prev_mon_ptr = mlist_ptr;
 		current_mon_ptr = mlist_ptr->next_mon;
-		
+
 		while (current_mon_ptr != NULL && current_mon_ptr->unum != mon_num) {
 			prev_mon_ptr = current_mon_ptr;
 			current_mon_ptr = current_mon_ptr->next_mon;
@@ -94,7 +94,7 @@ int monster_present(monster *mlist_ptr, int x, int y) {
 	} else {
 		prev_mon_ptr = mlist_ptr;
 		current_mon_ptr = mlist_ptr->next_mon;
-		
+
 		while (current_mon_ptr != NULL && current_mon_ptr->xloc != x && current_mon_ptr->yloc != y) {
 			prev_mon_ptr = current_mon_ptr;
 			current_mon_ptr = current_mon_ptr->next_mon;

@@ -123,7 +123,7 @@ void print_status() {
 }
 
 /* generate initial secondary stats */
-void gen_init_2stats() {
+void gen_secondary_stats() {
 
 	/* Experience initial */
 	sec_stats[XP] = 0;

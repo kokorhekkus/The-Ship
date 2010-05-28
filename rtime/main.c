@@ -1,7 +1,8 @@
-
 #include "engine.h"
 #include "object.h"
 #include "map.h"
+#include "rtutil.h"
+#include "log.h"
 #include "character.h"
 
 #include <ncurses.h>
@@ -10,40 +11,51 @@ int main(int argc, char *argv[]) {
 	char *wmsg = "You're inside.";
 	int w_choice = 0;
 	int r_choice = 0;
-	
-	/* init, and enter game loop checking for keyb input */
+
+	rtlog("Initialising");
+	/* init, and enter game loop checking for keyboard input */
 	init_for_draw();
 	init_objects();
 	init_monsters();
+	init_log();
 	set_mapdrawing_chars();
 	init_screen_array();
 
+	rtlog("Going to title screen");
 	vis_cursor(0);
 	title_screen();
 	clear();
 
+	rtlog("Getting name");
 	vis_cursor(1);
 	get_pcname();
 	clear();
 	vis_cursor(0);
 
-	w_choice = world_choice(); 
+	rtlog("Getting origin world");
+	w_choice = world_choice();
 	clear();
+	rtlog("Getting regiment choice");
 	r_choice = regiment_choice();
+	rtlog("Rolling PC stats");
 	roll_pc(w_choice, r_choice);
-	generate_sinv(w_choice, r_choice);
-	gen_init_2stats();
+	rtlog("Generating starting inventory");
+	gen_sinv(w_choice, r_choice);
+	rtlog("Deducing secondary stats");
+	gen_secondary_stats();
 	clear();
 
+	rtlog("Generating starting level");
 	gen_level(1,CORRIDORS);
 	main_screen();
-	
+
 	print_msg(wmsg);
 
+	rtlog("Entering main game loop");
 	for (;;) {
 
 		/* get keyb input */
-		char c = getch(); 
+		char c = getch();
 
 		/*color test */
 		if (c == 'c') {
@@ -71,59 +83,59 @@ int main(int argc, char *argv[]) {
 			restore_screen("scrtocol.tdd");
 		}
 
-		/* Rogue-like movement keys */
-		/*** DO NUMBERPAD ***/
-		if (c == 'h') {
+		/* Rogue-like movement keys & cursor keys*/
+		/*** TODO: NUMBERPAD ***/
+		if (c == 'h' || c == KEY_LEFT)  {
 			int mtype = move_pc(0,-1);
-			if (mtype==1 || mtype==2) { 
-				print_pc(); 
+			if (mtype==1 || mtype==2) {
+				print_pc();
 			}
 		}
-		if (c == 'j') {
+		if (c == 'j' || c == KEY_DOWN) {
 			int mtype = move_pc(1,0);
-			if (mtype==1 || mtype==2) { 
-				print_pc(); 
+			if (mtype==1 || mtype==2) {
+				print_pc();
 			}
 		}
-		if (c == 'k') {
+		if (c == 'k' || c == KEY_UP) {
 			int mtype = move_pc(-1,0);
-			if (mtype==1 || mtype==2) { 
-				print_pc(); 
+			if (mtype==1 || mtype==2) {
+				print_pc();
 			}
 		}
-		if (c == 'l') {
+		if (c == 'l' || c == KEY_RIGHT) {
 			int mtype = move_pc(0,1);
-			if (mtype==1 || mtype==2) { 
-				print_pc(); 
+			if (mtype==1 || mtype==2) {
+				print_pc();
 			}
 		}
 		if (c == 'y') {
 			int mtype = move_pc(-1,-1);
-			if (mtype==1 || mtype==2) { 
-				print_pc(); 
+			if (mtype==1 || mtype==2) {
+				print_pc();
 			}
 		}
 		if (c == 'u') {
 			int mtype = move_pc(-1,1);
-			if (mtype==1 || mtype==2) { 
-				print_pc(); 
+			if (mtype==1 || mtype==2) {
+				print_pc();
 			}
 		}
 		if (c == 'b') {
 			int mtype = move_pc(1,-1);
-			if (mtype==1 || mtype==2) { 
-				print_pc(); 
+			if (mtype==1 || mtype==2) {
+				print_pc();
 			}
 		}
 		if (c == 'n') {
 			int mtype = move_pc(1,1);
-			if (mtype==1 || mtype==2) { 
-				print_pc(); 
+			if (mtype==1 || mtype==2) {
+				print_pc();
 			}
 		}
 
 		/* open a door */
-		if (c == 'o') { open_door(); }			 
+		if (c == 'o') { open_door(); }
 
 		/* pick up objects from the floor */
 		if (c == ',') { get_from_flr(); }

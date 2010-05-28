@@ -1,4 +1,3 @@
-
 #include "screens.h"
 #include "character.h"
 #include "engine.h"
@@ -15,7 +14,7 @@ void title_screen() {
 	write_char(6, 39, ']', BLUE);
 
 	while (c != ' ') {
-		c = getch();   
+		c = getch();
 	}
 }
 
@@ -25,7 +24,7 @@ int world_choice() {
 	char c = '\0';
 
 	write_string(2, 2, "Choose your homeworld:", CYAN);
-	
+
 	write_char(4, 5, 'E', CYAN);
 	write_string(4, 7, "arth (1.00G)", BLUE);
 	write_char(5, 5, 'N', CYAN);
@@ -39,25 +38,19 @@ int world_choice() {
 	}
 
 	for (;;) {
-		c = getch();
+	  c = getch();
 
-		if (c == 'e' || c == 'n' || c == 's') {
-			break;
-		}
-		if (c == 'e' || c == 'N' || c == 'S') {
-			break;
-		}
-	}
-	
-	if (c == 'e' || c == 'E') {
+	  if (c == 'e' || c == 'E') {
 		return EAR;
-	}
-	if (c == 'n' || c == 'N') {
+	  }
+	  if (c == 'n' || c == 'N') {
 		return NEW;
-	}
-	if (c == 's' || c == 'S') {
+	  }
+	  if (c == 's' || c == 'S') {
 		return SPA;
+	  }
 	}
+
 	return -1;
 }
 
@@ -67,7 +60,7 @@ int regiment_choice() {
 	char c = '\0';
 
 	write_string(2, 2, "Choose your regiment:", CYAN);
-	
+
 	write_char(4, 5, 'C', CYAN);
 	write_string(4, 7, "ommando", BLUE);
 	write_char(5, 5, 'M', CYAN);
@@ -126,7 +119,7 @@ int regiment_choice() {
 void main_screen() {
 
 	/* Stuff that doesn't ever change */
-	
+
 	/* Primary stats  */
 	write_string(3, 72, "Str:", L_GREY);
 	write_string(5, 72, "Cdn:", L_GREY);
@@ -140,7 +133,7 @@ void main_screen() {
 	write_string(24, 24, "L:   /", L_GREY);
 	write_string(24, 34, "C:   /", L_GREY);
 	write_string(24, 44, "Spd:", L_GREY);
-	write_string(24, 53, "Dge:", L_GREY);
+	write_string(24, 53, "Dmg:", L_GREY);
 	write_string(24, 60, "A:  /", L_GREY);
 
 	/* top status line */
@@ -148,7 +141,7 @@ void main_screen() {
 	write_string(23, 53, "LRW:", L_GREY);
 
 	/* print stuff that changes */
-	print_stats();   print_2stats();	
+	print_stats();   print_2stats();
 	print_weapons(); print_name();
 	print_status();
 	print_map();
@@ -169,4 +162,3 @@ void print_msg(char *msg) {
 	/* write new message */
 	write_string(0, 0, msg, L_GREY);
 }
-

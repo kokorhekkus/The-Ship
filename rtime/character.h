@@ -1,4 +1,3 @@
-
 #ifndef RT_CHARACTER
 #define RT_CHARACTER 1
 
@@ -55,7 +54,7 @@ void print_name();
 
 void print_status();
 
-void gen_init_2stats();
+void gen_secondary_stats();
 
 void get_pcname();
 

@@ -50,7 +50,7 @@ void gen_level_obj(int depth, int type);
 
 object *assign_object(object *new_obj, int obj_num, int type, int type_index, int x, int y);
 
-void generate_sinv(int class, int gang);
+void gen_sinv(int class, int gang);
 
 void print_weapons();
 

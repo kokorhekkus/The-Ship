@@ -1,6 +1,5 @@
-
-/* 
- * Engine function definitions 
+/*
+ * Engine function definitions
  * -these are the platform-dependent functions
  */
 
@@ -11,8 +10,8 @@
 #include <signal.h>
 #include <time.h>
 
-/* 
- * initialise ncurses and colors, for drawing the game screen 
+/*
+ * initialise ncurses and colors, for drawing the game screen
  * -includes signal processing/RNG seeding
  */
 void init_for_draw(void) {
@@ -23,9 +22,9 @@ void init_for_draw(void) {
 	/* check for and make the neccesary files and folders */
 
 	/* ncurses init stuff */
-	initscr(); 
+	initscr();
 	/*** CHECK FOR STDSCR !< 80x25 (int LINES,COLS) ***/
-	cbreak();  
+	cbreak();
 	nonl();
 	noecho();
 	intrflush(stdscr, FALSE);
@@ -33,7 +32,7 @@ void init_for_draw(void) {
 
 	if (has_colors()) {
 		start_color();
-		
+
 		/* Set up 8 colors (16 with BOLDing) */
 		init_pair(1, COLOR_RED,     COLOR_BLACK);
 		init_pair(2, COLOR_GREEN,   COLOR_BLACK);
@@ -49,7 +48,7 @@ void init_for_draw(void) {
 /* write a character, 'c', to the co-ords (x,y) with colour 'color' */
 void write_char(int x, int y, char c, int color) {
 	chtype ch = c;
- 
+
 	set_term_color(color);
 	mvaddch(x,y,ch);
 	refresh();
@@ -66,12 +65,12 @@ void write_string(int x, int y, char *s, int color) {
 	for (i=0; i < s_len; i++) {
 		ch = s[i];
 		mvaddch(x,y+i,ch);
-	}	
+	}
 	refresh();
 }
 
 /*
- * write a line of color 'color' and length 'length' starting at (x,y) 
+ * write a line of color 'color' and length 'length' starting at (x,y)
  * 'type' is 1 - horizontal, 2 - vertical
  */
 void write_line(int x, int y, int type, int length, char c, int color) {

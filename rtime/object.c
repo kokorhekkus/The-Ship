@@ -215,7 +215,7 @@ object *assign_object(object *new_obj, int obj_num, int type, int type_index, in
 }
 
 /* generate starting equipment */
-void generate_sinv(int world, int regiment) {
+void gen_sinv(int world, int regiment) {
 	if (world == EAR) {
 		equip[SRW] = srw[0];
 		equip[LRW] = lrw[1];

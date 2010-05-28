@@ -126,7 +126,7 @@ void gen_level_map(int depth, int type) {
 		x_length = num_inrange(4, MAX_ROOM_SIZE);
 		y_length = num_inrange(4, MAX_ROOM_SIZE);
 
-		rtlog("Creating initial room");
+		rtlog("Creating first room");
 		make_room(SQUARE, x, y, x_length, y_length);
 
 		rtlog("Setting initial PC position and up staircase");

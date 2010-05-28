@@ -1,4 +1,3 @@
-
 #ifndef RT_ENGINE
 #define RT_ENGINE 1
 
@@ -41,4 +40,3 @@ void set_term_color(int color);
 void error_exit(char *msg);
 
 #endif
- 
